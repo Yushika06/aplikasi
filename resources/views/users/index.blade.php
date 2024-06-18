@@ -9,6 +9,13 @@
             <div class="col-md-2">
                 <a href="{{ route('users.create') }}" class="btn btn-primary">Create User</a>
             </div>
+            <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+
+            <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+            </button>
         </div>
         <table class="table table-striped">
             <thead>
@@ -24,7 +31,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $user->username }}</td>
-                    <td>{{ $user->role == 1 ? "Normal" : Admin }}</td>
+                    <td>{{ $user->role == 1 ? "Normal" : "Admin" }}</td>
                     <td>
                         <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">View</a>
                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
