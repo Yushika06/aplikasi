@@ -20,7 +20,7 @@ class GuestMiddleware
             $userRole = Auth::user()->role;
 
             if ($userRole == 2) {
-                return redirect('/admin/users')->with('error', 'You are already logged in.');
+                return redirect('/')->with('error', 'You are already logged in.');
             }
 
             if ($userRole == 1) {

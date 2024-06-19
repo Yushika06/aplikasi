@@ -12,8 +12,8 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $produks = Produk::latest()->paginate(10);
-        return view('produks.index', compact('produks'));
+        $produks = Produk::all();
+        return view('home.index', compact('produks'));
     }
 
     /**
@@ -37,7 +37,7 @@ class ProdukController extends Controller
         ]);
 
         // Handle image upload
-        $imageName = time().'.'.$request->img->extension();
+        $imageName = time() . '.' . $request->img->extension();
         $request->img->move(public_path('images'), $imageName);
 
         Produk::create([
@@ -53,9 +53,10 @@ class ProdukController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Produk $produk)
+    public function show($id)
     {
-        return view('produks.show', compact('produk'));
+        $produk = Produk::with('reviews')->findOrFail($id);
+        return view('home.show', compact('produk'));
     }
 
     /**
