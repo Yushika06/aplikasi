@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdukCrudController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome'); // Ganti dengan view yang sesuai
@@ -39,9 +39,9 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-        Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::post('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/profile', [UserController::class, 'show'])->name('profile.show');
+        Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
+        Route::post('/profile', [UserController::class, 'update'])->name('profile.update');
+        Route::post('/profile/delete', [UserController::class, 'destroy'])->name('profile.destroy');
     });
 });

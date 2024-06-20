@@ -23,6 +23,6 @@
                 </tr>
             </tbody>
         </table>
-        <a href="{{ route('users.index') }}" class="btn btn-secondary">Back</a>
+        <a href="{{ route('profile.show') }}" class="btn btn-secondary">Back</a>
     </div>
 @endsection

@@ -24,7 +24,7 @@
                         <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link" href="{{ route('profile.show') }}">Profile</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">

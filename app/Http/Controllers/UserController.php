@@ -3,87 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function show()
     {
-        $users = User::latest()->paginate(10);
-        return view('home.index', compact('users'));
+        $user = Auth::user();
+        return view('profile.show', compact('user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function edit()
     {
-        return view('users.create');
+        $user = Auth::user();
+        return view('profile.edit', compact('user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function update(Request $request)
     {
+        $user = Auth::user();
+
         $request->validate([
-            'username' => 'required',
-            'password' => 'required|min:6',
+            'username' => 'required|string|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
         ]);
 
-        User::create($request->all());
+        $user->username = $request->username;
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
 
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
+        return redirect()->route('profile.show')->with('success', 'Profile updated successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
+    public function destroy()
     {
-        return view('users.show', compact('user'));
+        $user = Auth::user();
+        Auth::logout();
+        $user->delete();
+
+        return redirect('/')->with('success', 'Profile deleted successfully');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        return view('users.edit', compact('user'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required|min:6',
-        ]);
-
-        $user->update($request->all());
-
-        return redirect()->route('users.index')->with('success', 'User updated successfully.');
-    }
-
     public function incrementPurchases(User $user, $quantity)
     {
         $user->purchases += $quantity;
         $user->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        $user->delete();
-
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
-    }
 }
