@@ -27,20 +27,22 @@ class ProdukCrudController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required|integer',
-            'img' => 'required|image',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'required',
         ]);
 
-        $imgPath = $request->file('img')->store('images', 'public');
+        // Handle image upload
+        $imageName = time() . '.' . $request->img->extension();
+        $request->img->move(public_path('images'), $imageName);
 
         Produk::create([
             'name' => $request->name,
             'price' => $request->price,
-            'img' => $imgPath,
+            'img' => $imageName,
             'description' => $request->description,
         ]);
 
-        return redirect()->route('admin.produk.index');
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil dibuat.');
     }
 
     public function edit($id)
@@ -60,7 +62,6 @@ class ProdukCrudController extends Controller
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        // Update data produk
         $produk->name = $request->input('name');
         $produk->price = $request->input('price');
         $produk->description = $request->input('description');
@@ -72,7 +73,7 @@ class ProdukCrudController extends Controller
             }
 
             // Upload gambar baru
-            $imageName = time().'.'.$request->img->extension();
+            $imageName = time() . '.' . $request->img->extension();
             $request->img->move(public_path('images'), $imageName);
             $produk->img = $imageName;
         }

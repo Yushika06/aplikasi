@@ -9,11 +9,17 @@ class Pembelian extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['produk_id', 'quantity'];
+    protected $fillable = [
+        'user_id', 'produk_id', 'quantity'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function produk()
     {
         return $this->belongsTo(Produk::class);
     }
 }
-

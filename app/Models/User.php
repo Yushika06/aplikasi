@@ -22,6 +22,10 @@ class User extends Authenticatable
         'role',
         'purchases',
     ];
+    public function pembelians()
+    {
+        return $this->hasMany(Pembelian::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

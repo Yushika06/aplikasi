@@ -71,6 +71,12 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 
+    public function incrementPurchases(User $user, $quantity)
+    {
+        $user->purchases += $quantity;
+        $user->save();
+    }
+
     /**
      * Remove the specified resource from storage.
      */

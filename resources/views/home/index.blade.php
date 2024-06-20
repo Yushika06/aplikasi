@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('title', 'Daftar Produk')
+
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +20,7 @@
                             <img src="{{ asset('images/' . $produk->img) }}" alt="{{ $produk->name }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $produk->name }}</h5>
-                                <p class="card-text">Harga: {{ $produk->price }}</p>
+                                <p class="btn btn-warning btn-sm">Harga: Rp {{ number_format($produk->price, 2, ',', '.') }}</p>
                                 <a href="{{ route('home.show', $produk->id) }}" class="btn btn-primary">Lihat Detail</a>
                             </div>
                         </div>
@@ -26,5 +31,6 @@
             @endif
         </div>
     </div>
+    @endsection
 </body>
 </html>

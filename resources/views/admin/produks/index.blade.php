@@ -8,7 +8,35 @@
     <div class="container mt-5">
         <h1 class="text-center">Admin - Daftar Produk</h1>
         <a href="{{ route('admin.produk.create') }}" class="btn btn-primary mb-3">Tambah Produk</a>
-        <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nama Produk</th>
+                    <th>Harga</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($produks as $produk)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $produk->name }}</td>
+                    <td>{{ number_format($produk->price, 2, ',', '.') }}</td>
+                    <td>
+                        <a href="{{ route('admin.produk.edit', $produk->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('admin.produk.destroy', $produk->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin menghapus produk ini?')">Hapus</button>
+                                </form>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        {{-- <div class="row">
             @if($produks && $produks->count() > 0)
                 @foreach($produks as $produk)
                     <div class="col-md-4">
@@ -16,7 +44,7 @@
                             <img src="{{ asset('images/' . $produk->img) }}" class="card-img-top" alt="{{ $produk->name }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $produk->name }}</h5>
-                                <p class="card-text">Harga: {{ $produk->price }}</p>
+                                <p class="btn btn-success btn-sm">Harga: Rp {{ number_format($produk->price, 2, ',', '.') }}</p>
                                 <p class="card-text">{{ $produk->description }}</p>
                                 <a href="{{ route('admin.produk.edit', $produk->id) }}" class="btn btn-warning">Edit</a>
                                 <form action="{{ route('admin.produk.destroy', $produk->id) }}" method="POST" class="d-inline">
@@ -31,7 +59,7 @@
             @else
                 <p class="text-center">Tidak ada produk yang tersedia.</p>
             @endif
-        </div>
+        </div> --}}
     </div>
 </body>
 </html>

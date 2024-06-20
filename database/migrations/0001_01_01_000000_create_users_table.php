@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->integer('role')->default(1);
+            $table->integer('purchases')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

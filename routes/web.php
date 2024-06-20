@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdukCrudController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome'); // Ganti dengan view yang sesuai
@@ -35,5 +36,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [ProdukController::class, 'index'])->name('home.index');
         Route::get('/produks/{id}', [ProdukController::class, 'show'])->name('home.show');
         Route::post('/produk/{id}/beli', [ProdukController::class, 'beli'])->name('produk.beli')->middleware('auth');
+    });
+
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::post('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 });
