@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('title', 'Daftar Produk')
+
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,5 +35,6 @@
             <button type="submit" class="btn btn-primary">Update Produk</button>
         </form>
     </div>
+@endsection
 </body>
 </html>

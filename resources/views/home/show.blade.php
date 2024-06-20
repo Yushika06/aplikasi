@@ -1,4 +1,8 @@
-<!-- resources/views/home/show.blade.php -->
+@extends('layouts.app')
+
+@section('title', 'Daftar Produk')
+
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,5 +42,6 @@
             </div>
         </div>
     </div>
+@endsection
 </body>
 </html>
