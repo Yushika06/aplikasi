@@ -21,9 +21,9 @@ class Produk extends Model
         'name', 'price', 'description', 'img'
     ];
 
-    public function reviews()
+    public function pembelian()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Pembelian::class);
     }
     /**
      * The attributes that should be hidden for serialization.
