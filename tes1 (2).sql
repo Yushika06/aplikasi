@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 19, 2024 at 03:18 PM
+-- Generation Time: Jun 20, 2024 at 02:51 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.8
 
@@ -113,11 +113,33 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '0001_01_01_000000_create_users_table', 1),
-(2, '0001_01_01_000001_create_cache_table', 1),
-(3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2024_06_19_010130_create_produks_table', 1),
-(5, '2024_06_19_010139_create_reviews_table', 1);
+(9, '0001_01_01_000000_create_users_table', 1),
+(10, '0001_01_01_000001_create_cache_table', 1),
+(11, '0001_01_01_000002_create_jobs_table', 1),
+(12, '2024_06_19_010130_create_produks_table', 1),
+(13, '2024_06_19_191810_create_pembelians_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pembelians`
+--
+
+CREATE TABLE `pembelians` (
+  `id` bigint UNSIGNED NOT NULL,
+  `produk_id` bigint UNSIGNED NOT NULL,
+  `quantity` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pembelians`
+--
+
+INSERT INTO `pembelians` (`id`, `produk_id`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2024-06-19 12:39:25', '2024-06-19 12:39:25'),
+(2, 1, 2, '2024-06-19 12:40:06', '2024-06-19 12:40:06');
 
 -- --------------------------------------------------------
 
@@ -140,20 +162,7 @@ CREATE TABLE `produks` (
 --
 
 INSERT INTO `produks` (`id`, `name`, `price`, `img`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'tes', 25000, 'tes.png', 'tes', NULL, NULL),
-(2, 'tes2', 500, 'a.png', 'adfawfwf', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reviews`
---
-
-CREATE TABLE `reviews` (
-  `id` bigint UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(1, 'aa', 10000, 'images/fsnfuyZiV9BBA2wGj7LSMjPV1sviHyTLwgT2sf2g.jpg', '1', '2024-06-19 12:35:01', '2024-06-19 12:35:01');
 
 -- --------------------------------------------------------
 
@@ -175,7 +184,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('L35JX6xudUGxr4j8Us8JyBmzEaYdADZByzLdfywa', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiaHA0REJ0bksxc1ZXWTBVNWpDZzZkd0VDNnpMcHM0UlJoaklNYTNXOCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ob21lIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjg6InVzZXJuYW1lIjtzOjM6Inl1dSI7czo0OiJyb2xlIjtpOjE7fQ==', 1718810075);
+('t0nXWr7B1p32k89BaNTLdkrZjwgdksHVHQ4u1SjP', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiUWNWR2VWSElRNU0zdTg5dThjQ0xEVlVKdzlpOERveElFSnJDOEZqUCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ob21lL3Byb2R1a3MvMSI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7czo4OiJ1c2VybmFtZSI7czo1OiJ5dXN1ZiI7czo0OiJyb2xlIjtpOjE7fQ==', 1718826006);
 
 -- --------------------------------------------------------
 
@@ -198,7 +207,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'yuu', '$2y$12$OduuRigjJHMuHyyfzVJ5JO4gnNz6dFlv.tXbWTDKaAkGIMhvfm6N2', 1, NULL, '2024-06-19 07:35:58', '2024-06-19 07:35:58');
+(1, 'yuu', '$2y$12$cdl8sKitYz6l14J973SopeYD3Gh.t5O13widQTBCVvUUxZu2g3mdy', 2, NULL, '2024-06-19 12:33:00', '2024-06-19 12:33:00'),
+(2, 'yusuf', '$2y$12$3u526y0TuJJRajdkY2VZS.OEpPwPVLZ8q5ovaiRLHh3L.K2f22iQa', 1, NULL, '2024-06-19 12:33:51', '2024-06-19 12:33:51');
 
 --
 -- Indexes for dumped tables
@@ -243,15 +253,16 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pembelians`
+--
+ALTER TABLE `pembelians`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pembelians_produk_id_foreign` (`produk_id`);
+
+--
 -- Indexes for table `produks`
 --
 ALTER TABLE `produks`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `reviews`
---
-ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -288,25 +299,35 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `pembelians`
+--
+ALTER TABLE `pembelians`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `produks`
 --
 ALTER TABLE `produks`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `reviews`
---
-ALTER TABLE `reviews`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `pembelians`
+--
+ALTER TABLE `pembelians`
+  ADD CONSTRAINT `pembelians_produk_id_foreign` FOREIGN KEY (`produk_id`) REFERENCES `produks` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

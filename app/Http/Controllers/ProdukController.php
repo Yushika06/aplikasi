@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Pembelian;
+use App\Models\Produk;
+use App\Models\User;
 
 class ProdukController extends Controller
 {
@@ -23,6 +26,21 @@ class ProdukController extends Controller
     {
         return view('produks.create');
     }
+
+    public function beli(Request $request, $id)
+{
+    $produk = Produk::find($id);
+    $quantity = $request->input('quantity');
+    $user = Auth::user(); // Mendapatkan user yang sedang login
+
+    // Membuat catatan pembelian
+    Pembelian::create([
+        'produk_id' => $produk->id,
+        'quantity' => $quantity,
+    ]);
+
+    return redirect()->route('home.show', ['id' => $id])->with('success', 'Pembelian berhasil dilakukan!');
+}
 
     /**
      * Store a newly created resource in storage.
@@ -55,7 +73,7 @@ class ProdukController extends Controller
      */
     public function show($id)
     {
-        $produk = Produk::with('reviews')->findOrFail($id);
+        $produk = Produk::findOrFail($id);
         return view('home.show', compact('produk'));
     }
 

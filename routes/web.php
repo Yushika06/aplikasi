@@ -18,7 +18,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
     Route::middleware('role:2')->prefix('admin')->group(function () {
         Route::prefix('produks')->group(function () {
@@ -34,5 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:1')->prefix('home')->group(function () {
         Route::get('/', [ProdukController::class, 'index'])->name('home.index');
         Route::get('/produks/{id}', [ProdukController::class, 'show'])->name('home.show');
+        Route::post('/produk/{id}/beli', [ProdukController::class, 'beli'])->name('produk.beli')->middleware('auth');
     });
 });
