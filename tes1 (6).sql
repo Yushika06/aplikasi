@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 20, 2024 at 12:06 PM
+-- Generation Time: Jun 20, 2024 at 01:39 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.8
 
@@ -142,7 +142,8 @@ CREATE TABLE `pembelians` (
 --
 
 INSERT INTO `pembelians` (`id`, `user_id`, `produk_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, '2024-06-20 04:58:51', '2024-06-20 04:58:51');
+(1, 1, 1, 1, '2024-06-20 04:58:51', '2024-06-20 04:58:51'),
+(2, 2, 1, 1, '2024-06-20 06:38:19', '2024-06-20 06:38:19');
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,8 @@ CREATE TABLE `produks` (
 --
 
 INSERT INTO `produks` (`id`, `name`, `price`, `img`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Sepatu Ventera', 149000, '1718884714.jpg', 'Sepatu', '2024-06-20 04:58:34', '2024-06-20 04:58:34');
+(1, 'Sepatu Ventera', 149000, '1718884714.jpg', 'Sepatu', '2024-06-20 04:58:34', '2024-06-20 04:58:34'),
+(2, 'Topi', 84999, '1718885957.jpg', 'topi', '2024-06-20 05:19:17', '2024-06-20 05:19:17');
 
 -- --------------------------------------------------------
 
@@ -187,7 +189,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('yCoGAnN8XGVh47rYlIItll1I9QWRnWXyYxKReZps', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiMThFSXR4Uk81V25Ua04wOFQ4QkNCTWpyR1FNUmhBMDlJVFFlVTNTOCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ob21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjg6InVzZXJuYW1lIjtzOjM6Inl1dSI7czo0OiJyb2xlIjtpOjE7fQ==', 1718885169);
+('KXFdDRQI6NjmuFtaPOjE364WiiLrM9T2zI0OI35I', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiQ2VTN1RHcGI1dlNjT1R0SW96S3NRbmNOU0tZM0U0bDBzS1pPcUMwVSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9maWxlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MjtzOjg6InVzZXJuYW1lIjtzOjU6Inl1c3VmIjtzOjQ6InJvbGUiO2k6MTt9', 1718890705);
 
 -- --------------------------------------------------------
 
@@ -211,7 +213,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `purchases`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'yuu', '$2y$12$IqsTD5ZdUAZJVmNgdpAwru8w99MIT//J/KUiga6YY8OXHkZ735CXW', 2, 1, NULL, '2024-06-20 04:57:41', '2024-06-20 04:58:51');
+(1, 'yuu', '$2y$12$IqsTD5ZdUAZJVmNgdpAwru8w99MIT//J/KUiga6YY8OXHkZ735CXW', 2, 1, NULL, '2024-06-20 04:57:41', '2024-06-20 04:58:51'),
+(2, 'yuuno', '$2y$12$Y2vJi7G/V7Qjs2Qca38zA.eF4YfGtjVJNRr89isC70uPIcczLPHZe', 1, 1, NULL, '2024-06-20 06:34:14', '2024-06-20 06:38:19');
 
 --
 -- Indexes for dumped tables
@@ -309,19 +312,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pembelians`
 --
 ALTER TABLE `pembelians`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `produks`
 --
 ALTER TABLE `produks`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
