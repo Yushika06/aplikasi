@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdukCrudController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -43,5 +44,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
         Route::post('/profile', [UserController::class, 'update'])->name('profile.update');
         Route::post('/profile/delete', [UserController::class, 'destroy'])->name('profile.destroy');
+
+        Route::post('/produk/{produk_id}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     });
 });
