@@ -4,7 +4,7 @@
 -   2 > Admin
 -   3 > Blocked
 
-# Setup
+# Setup (optional)
 
 ```
 composer update
@@ -20,7 +20,7 @@ php artisan migrate:refresh
 php artisan key:generate
 ```
 
-# Env
+# Env (optional)
 
 change the .env.example to .env
 
