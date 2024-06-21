@@ -12,6 +12,10 @@ Route::get('/', function () {
     return view('welcome'); // Ganti dengan view yang sesuai
 });
 
+Route::get('/blocked', function () {
+    return view('blocked');
+})->name('blocked');
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'loginForm'])->name('auth.formlogin');
     Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
@@ -25,11 +29,13 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:2')->prefix('admin')->group(function () {
         Route::prefix('produks')->group(function () {
             Route::get('/', [ProdukCrudController::class, 'index'])->name('admin.produk.index');
-            Route::get('/create', [ProdukCrudController::class, 'create'])->name('admin.produk.create');
-            Route::post('/', [ProdukCrudController::class, 'store'])->name('admin.produk.store');
-            Route::get('/{id}/edit', [ProdukCrudController::class, 'edit'])->name('admin.produk.edit');
-            Route::put('/{id}', [ProdukCrudController::class, 'update'])->name('admin.produk.update');
-            Route::delete('/{id}', [ProdukCrudController::class, 'destroy'])->name('admin.produk.destroy');
+        Route::get('/create', [ProdukCrudController::class, 'create'])->name('admin.produk.create');
+        Route::post('/', [ProdukCrudController::class, 'store'])->name('admin.produk.store');
+        Route::get('/{id}/edit', [ProdukCrudController::class, 'edit'])->name('admin.produk.edit');
+        Route::put('/{id}', [ProdukCrudController::class, 'update'])->name('admin.produk.update');
+        Route::delete('/{id}', [ProdukCrudController::class, 'destroy'])->name('admin.produk.destroy');
+        Route::post('/user/block/{id}', [UserController::class, 'block'])->name('user.block');
+        Route::post('/user/unblock/{id}', [UserController::class, 'unblock'])->name('user.unblock');
         });
     });
 

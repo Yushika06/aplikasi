@@ -39,6 +39,12 @@ class AuthController extends Controller
             if (Auth::user()->role === 1) {
                 return redirect()->intended('/home/');
             }
+            if (Auth::user()->role === 3) {
+                Auth::logout();
+                return back()->withErrors([
+                    'username' => 'Your account has been blocked.',
+                ])->onlyInput('username');
+            }
         }
 
         // If authentication fails, return back with an error message

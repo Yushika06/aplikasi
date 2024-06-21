@@ -8,26 +8,28 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('home.index') }}">Toko Yusufnova</a>
+            <a class="navbar-brand" href="{{ route('home.index') }}"><i class="fa-solid fa-store"></i> Toko Yusufnova</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home.index') }}">Home</a>
+                        <a class="nav-link" href="{{ route('home.index') }}"><i class="fa-solid fa-house-chimney"></i> Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home.index') }}">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('profile.show') }}">Profile</a>
-                    </li>
+                    @if (Auth::check() && Auth::user()->role == 2)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.produk.index') }}"><i class="fa-solid fa-screwdriver-wrench"></i> Dashboard - Admin</a>
+                        </li>
+                    @endif
                 </ul>
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('profile.show') }}"><i class="fa-solid fa-user"></i> Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('auth.logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                    </li>
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('auth.formlogin') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
@@ -36,15 +38,6 @@
                             <a class="nav-link" href="{{ route('auth.formregister') }}"><i class="fas fa-user-plus"></i> Register</a>
                         </li>
                     @else
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user"></i> {{ Auth::user()->name }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a></li>
-                                <li><a class="dropdown-item" href="{{ route('auth.logout') }}">Logout</a></li>
-                            </ul>
-                        </li>
                     @endguest
                 </ul>
             </div>

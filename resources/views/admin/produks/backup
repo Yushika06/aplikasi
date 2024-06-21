@@ -1,0 +1,24 @@
+        {{-- <div class="row">
+            @if($produks && $produks->count() > 0)
+                @foreach($produks as $produk)
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <img src="{{ asset('images/' . $produk->img) }}" class="card-img-top" alt="{{ $produk->name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $produk->name }}</h5>
+                                <p class="btn btn-success btn-sm">Harga: Rp {{ number_format($produk->price, 2, ',', '.') }}</p>
+                                <p class="card-text">{{ $produk->description }}</p>
+                                <a href="{{ route('admin.produk.edit', $produk->id) }}" class="btn btn-warning">Edit</a>
+                                <form action="{{ route('admin.produk.destroy', $produk->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <p class="text-center">Tidak ada produk yang tersedia.</p>
+            @endif
+        </div> --}}

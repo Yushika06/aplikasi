@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProdukCrudController extends Controller
@@ -11,9 +12,10 @@ class ProdukCrudController extends Controller
     {
         // Mengambil semua produk dari database
         $produks = Produk::all();
+        $users = User::all();
 
         // Melewatkan data produk ke tampilan
-        return view('admin.produks.index', compact('produks'));
+        return view('admin.produks.index', compact('produks', 'users'));
     }
 
 

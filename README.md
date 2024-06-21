@@ -2,6 +2,7 @@
 
 -   1 > Normal
 -   2 > Admin
+-   3 > Blocked
 
 # Setup
 
@@ -31,4 +32,11 @@ DB_PORT=3306
 DB_DATABASE=your_database_name
 DB_USERNAME=your_mysql_username
 DB_PASSWORD=your_mysql_password
+```
+
+# Navbar (layouts.app)
+
+```
+Role 1 > Tidak ada Navbar Dashboard - Admin
+Role 2 > Ada Navbar Dashboard - Admin
 ```

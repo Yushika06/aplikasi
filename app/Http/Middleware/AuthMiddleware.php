@@ -17,6 +17,9 @@ class AuthMiddleware
                 return $next($request);
             }
         }
+        if ($role && Auth::user()->role != $role) {
+            abort(403, 'Unauthorized action.');
+        }
 
         return redirect('/login')->with('error', 'Please log in to access this page.');
     }

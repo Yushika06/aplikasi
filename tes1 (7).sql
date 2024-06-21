@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 20, 2024 at 01:39 PM
+-- Generation Time: Jun 21, 2024 at 09:46 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.8
 
@@ -120,7 +120,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (42, '0001_01_01_000001_create_cache_table', 4),
 (43, '0001_01_01_000002_create_jobs_table', 4),
 (44, '2024_06_19_010130_create_produks_table', 4),
-(45, '2024_06_20_043317_create_pembelians_table', 4);
+(45, '2024_06_20_043317_create_pembelians_table', 4),
+(46, '2024_06_21_064305_create_reviews_table', 5);
 
 -- --------------------------------------------------------
 
@@ -136,14 +137,6 @@ CREATE TABLE `pembelians` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `pembelians`
---
-
-INSERT INTO `pembelians` (`id`, `user_id`, `produk_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, '2024-06-20 04:58:51', '2024-06-20 04:58:51'),
-(2, 2, 1, 1, '2024-06-20 06:38:19', '2024-06-20 06:38:19');
 
 -- --------------------------------------------------------
 
@@ -172,6 +165,22 @@ INSERT INTO `produks` (`id`, `name`, `price`, `img`, `description`, `created_at`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `produk_id` bigint UNSIGNED NOT NULL,
+  `review` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rating` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sessions`
 --
 
@@ -189,7 +198,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('KXFdDRQI6NjmuFtaPOjE364WiiLrM9T2zI0OI35I', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiQ2VTN1RHcGI1dlNjT1R0SW96S3NRbmNOU0tZM0U0bDBzS1pPcUMwVSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9maWxlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MjtzOjg6InVzZXJuYW1lIjtzOjU6Inl1c3VmIjtzOjQ6InJvbGUiO2k6MTt9', 1718890705);
+('R512GPNIxUKTqHzH0RrY9Gqff303WzkAGfqU8xwN', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiQkVzY1p1dnpqQmU1WG1iVDZ3dHpyUUZJRE03ZU1kMlJaSVlvTkFDcyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9maWxlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjg6InVzZXJuYW1lIjtzOjM6Inl1dSI7czo0OiJyb2xlIjtpOjI7fQ==', 1718963072);
 
 -- --------------------------------------------------------
 
@@ -213,7 +222,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `purchases`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'yuu', '$2y$12$IqsTD5ZdUAZJVmNgdpAwru8w99MIT//J/KUiga6YY8OXHkZ735CXW', 2, 1, NULL, '2024-06-20 04:57:41', '2024-06-20 04:58:51'),
+(1, 'yuu', '$2y$12$ZFZPBYvBI.6R3UF6VOCf4.QUR3mWi3zLTIE.mXAhg7CsO87IYADdy', 2, 0, NULL, '2024-06-20 04:57:41', '2024-06-21 01:09:28'),
 (2, 'yuuno', '$2y$12$Y2vJi7G/V7Qjs2Qca38zA.eF4YfGtjVJNRr89isC70uPIcczLPHZe', 1, 1, NULL, '2024-06-20 06:34:14', '2024-06-20 06:38:19');
 
 --
@@ -273,6 +282,14 @@ ALTER TABLE `produks`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `reviews_user_id_foreign` (`user_id`),
+  ADD KEY `reviews_produk_id_foreign` (`produk_id`);
+
+--
 -- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
@@ -306,19 +323,25 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `pembelians`
 --
 ALTER TABLE `pembelians`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `produks`
 --
 ALTER TABLE `produks`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -336,6 +359,13 @@ ALTER TABLE `users`
 ALTER TABLE `pembelians`
   ADD CONSTRAINT `pembelians_produk_id_foreign` FOREIGN KEY (`produk_id`) REFERENCES `produks` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `pembelians_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_produk_id_foreign` FOREIGN KEY (`produk_id`) REFERENCES `produks` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reviews_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

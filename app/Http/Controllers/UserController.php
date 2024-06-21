@@ -38,6 +38,24 @@ class UserController extends Controller
         return redirect()->route('profile.show')->with('success', 'Profile updated successfully');
     }
 
+    public function block($id)
+    {
+        $user = User::find($id);
+        $user->role = 3;
+        $user->save();
+
+        return redirect()->route('admin.produk.index')->with('success', 'User blocked successfully');
+    }
+
+    public function unblock($id)
+    {
+        $user = User::find($id);
+        $user->role = 1;
+        $user->save();
+
+        return redirect()->route('admin.produk.index')->with('success', 'User unblocked successfully');
+    }
+
     public function destroy()
     {
         $user = Auth::user();
