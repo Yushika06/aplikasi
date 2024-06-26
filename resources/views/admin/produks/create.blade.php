@@ -4,8 +4,6 @@
 
 @section('content')
     <title>Admin - Tambah Produk</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
     <h1 class="text-center">Tambah Produk Baru</h1>
     <form action="{{ route('admin.produk.store') }}" method="POST" enctype="multipart/form-data">

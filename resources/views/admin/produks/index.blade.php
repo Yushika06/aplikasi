@@ -4,8 +4,6 @@
 
 @section('content')
     <title>Admin - Daftar Produk dan User</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <h1 class="text-center">Admin - Daftar Produk dan User</h1>
     <a href="{{ route('admin.produk.create') }}" class="btn btn-primary mb-3">Tambah Produk</a><br>
 
